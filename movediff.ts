@@ -6,7 +6,7 @@ namespace movedifferential {
      * Reference: As implemented in ev3dev2-python
      */
     //% fixedInstances
-    export class MDController {
+    export class MDController extends motors.SynchedMotorPair {
 
         //% blockCombine 
         private mdBaseSpeed: number;
@@ -17,7 +17,8 @@ namespace movedifferential {
         //% blockCombine
         private mdDistance: number;
 
-        constructor() {
+        constructor(ports: Output) {
+            super(ports);
             this.mdBaseSpeed = 25;
             this.mdRadius = 15;
             this.mdDistance = 10;
@@ -59,9 +60,15 @@ namespace movedifferential {
 
     }
 
-    //% fixedInstance
-    export const md1 = new MDController();
+    //% whenUsed fixedInstance block="B+C" jres=icons.portBC
+    export const largeBC = new MDController(Output.BC);
 
-    //% fixedInstance
-    export const md2 = new MDController();
+    //% whenUsed fixedInstance block="A+D" jres=icons.portAD
+    export const largeAD = new MDController(Output.AD);
+
+    //% whenUsed fixedInstance block="A+B" jres=icons.portAB
+    export const largeAB = new MDController(Output.AB);
+
+    //% whenUsed fixedInstance block="C+D" jres=icons.portCD
+    export const largeCD = new MDController(Output.CD);
 }

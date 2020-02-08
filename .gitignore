@@ -5,3 +5,5 @@ yotta_targets
 pxt_modules
 *.db
 *.tgz
+.DS_Store
+pxt-common-packages

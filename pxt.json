@@ -6,7 +6,8 @@
         "README.md",
         "ns.ts",
         "behaviors.ts",
-        "pid.ts"
+        "pid.ts",
+        "movediff.ts"
     ],
     "testFiles": [],
     "public": true,

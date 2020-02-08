@@ -7,3 +7,5 @@ pxt_modules
 *.tgz
 .DS_Store
 pxt-common-packages
+package-lock.json
+pxt-ev3

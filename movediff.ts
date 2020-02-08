@@ -9,13 +9,13 @@ namespace movedifferential {
     export class MDController {
 
         //% blockCombine 
-        public mdBaseSpeed: number;
+        private mdBaseSpeed: number;
 
         //% blockCombine
-        public mdRadius: number;
+        private mdRadius: number;
         
         //% blockCombine
-        public mdDistance: number;
+        private mdDistance: number;
 
         constructor() {
             this.mdBaseSpeed = 25;

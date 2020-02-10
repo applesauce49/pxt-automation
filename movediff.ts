@@ -22,21 +22,15 @@ namespace movedifferential {
         }
     }
 
-//    export const EV3Rim = new Wheel(30, 20);
-//    export const EV3EducationSetRim = new Wheel(43, 26);
-//    export const SmallMotorcycleRim = new Wheel(61.6, 15);
-
-    //% whenUsed fixedInstance block="EV3-Tire"
+    //% block="EV3-Tire"
     export const EV3Tire = new Wheel(43.2, 21);
   
-    //% whenUsed fixedInstance block="EV3-Education Tire"
+    //% block="EV3-Education Tire"
     export const EV3EducationSetTire = new Wheel(56, 28);
     
-    //% whenUsed fixedInstance block="Small Motorcycle Tire"
+    //% block="Small Motorcycle Tire"
     export const SmallMotorcycleTire = new Wheel(81.6, 13.6);
 
-    
-    
     //% fixedInstances
     export class MDController extends motors.SynchedMotorPair {
 
@@ -108,7 +102,7 @@ namespace movedifferential {
          * @param radius radius of circle
          * @param distance distance
          */
-        //% blockId=mdArcRight block="tank %md| with %Wheel wheels at speed %speed for circle of radius %radius for distance %distance"
+        //% blockId=mdArcRight block="tank %Wheel wheels at speed %speed for circle of radius %radius for distance %distance"
         //% group=Arc
         //% inlineInputMode=inline
         //% weight=99
@@ -124,7 +118,7 @@ namespace movedifferential {
          * @param radius radius of circle
          * @param distance distance
          */
-        //% blockId=mdArcLeft block="tank %md| with %Wheel wheels at speed %speed for circle of radius %radius for distance %distance"
+        //% blockId=mdArcLeft block="tank with %Wheel wheels at speed %speed for circle of radius %radius for distance %distance"
         //% group=Arc
         //% inlineInputMode=inline
         //% weight=99

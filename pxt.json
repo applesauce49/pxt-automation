@@ -1,6 +1,6 @@
 {
     "name": "automation",
-    "version": "0.0.15",
+    "version": "0.0.16",
     "description": "Automation, Process Control, Systems and Controls",
     "dependencies": {
         "core": "*"

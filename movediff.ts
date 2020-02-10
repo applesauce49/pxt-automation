@@ -1,15 +1,5 @@
 /// <reference path="./node_modules/pxt-ev3/libs/core/Output.ts" />
 
-enum EV3Wheels {
-    //% block="EV3-Tire"
-    A = 0x01,
-    //% block="EV3-Education Tire"
-    B = 0x02,
-    //% block="Small Motorcycle Tire"
-    C = 0x04,
-}
-
-
 namespace movedifferential {
     /**
      * A Move Differential controller.
@@ -70,58 +60,47 @@ namespace movedifferential {
 
         }
 
-        // def _on_arc(self, speed, radius_mm, distance_mm, brake, block, arc_right):
-        // """
-        // Drive in a circle with 'radius' for 'distance'
-        // """
+        private onArc(speed: number, radius_mm: number, distance_mm: number, arc_right: Boolean = true) {
+            let left_speed: number = 0;
+            let right_speed: number = 0;
 
-        // if radius_mm < self.min_circle_radius_mm:
-        //     raise ValueError("{}: radius_mm {} is less than min_circle_radius_mm {}".format(
-        //         self, radius_mm, self.min_circle_radius_mm))
+            if (radius_mm < this.min_circle_radius_mm) {
+                return;
+            }
 
-        // # The circle formed at the halfway point between the two wheels is the
-        // # circle that must have a radius of radius_mm
-        // circle_outer_mm = 2 * math.pi * (radius_mm + (self.wheel_distance_mm / 2))
-        // circle_middle_mm = 2 * math.pi * radius_mm
-        // circle_inner_mm = 2 * math.pi * (radius_mm - (self.wheel_distance_mm / 2))
+            let circle_outer_mm = 2 * Math.PI * (radius_mm + (this.wheel_distance_mm.valueOf() / 2));
+            let circle_middle_mm = 2 * Math.PI * radius_mm;
+            let circle_inner_mm = 2 * Math.PI * (radius_mm - (this.wheel_distance_mm.valueOf() / 2));
+            
+            if (arc_right) {
+                // The left wheel is making the larger circle and will move at 'speed'
+                // The right wheel is making a smaller circle so its speed will be a fraction of the left motor's speed
+                left_speed = speed;
+                right_speed = (circle_inner_mm / circle_outer_mm) * left_speed;
+            }
+            else {
+                // The right wheel is making the larger circle and will move at 'speed'
+                // The left wheel is making a smaller circle so its speed will be a fraction of the right motor's speed
+                right_speed = speed
+                left_speed = (circle_inner_mm / circle_outer_mm) * right_speed;
 
-        // if arc_right:
-        //     # The left wheel is making the larger circle and will move at 'speed'
-        //     # The right wheel is making a smaller circle so its speed will be a fraction of the left motor's speed
-        //     left_speed = speed
-        //     right_speed = float(circle_inner_mm / circle_outer_mm) * left_speed
+            }
 
-        // else:
-        //     # The right wheel is making the larger circle and will move at 'speed'
-        //     # The left wheel is making a smaller circle so its speed will be a fraction of the right motor's speed
-        //     right_speed = speed
-        //     left_speed = float(circle_inner_mm / circle_outer_mm) * right_speed
+            // # We know we want the middle circle to be of length distance_mm so
+            // # calculate the percentage of circle_middle_mm we must travel for the
+            // # middle of the robot to travel distance_mm.
+            let circle_middle_percentage = distance_mm / circle_middle_mm;
 
-        // log.debug(
-        //     "%s: arc %s, radius %s, distance %s, left-speed %s, right-speed %s, circle_outer_mm %s, circle_middle_mm %s, circle_inner_mm %s"
-        //     % (self, "right" if arc_right else "left", radius_mm, distance_mm, left_speed, right_speed, circle_outer_mm,
-        //        circle_middle_mm, circle_inner_mm))
+            // # Now multiple that percentage by circle_outer_mm to calculate how
+            // # many mm the outer wheel should travel.
+            let circle_outer_final_mm = circle_middle_percentage * circle_outer_mm;
 
-        // # We know we want the middle circle to be of length distance_mm so
-        // # calculate the percentage of circle_middle_mm we must travel for the
-        // # middle of the robot to travel distance_mm.
-        // circle_middle_percentage = float(distance_mm / circle_middle_mm)
+            let outer_wheel_rotations = circle_outer_final_mm / this.wheel.circumference_mm.valueOf();
+            let outer_wheel_degrees = outer_wheel_rotations * 360;
 
-        // # Now multiple that percentage by circle_outer_mm to calculate how
-        // # many mm the outer wheel should travel.
-        // circle_outer_final_mm = circle_middle_percentage * circle_outer_mm
-
-        // outer_wheel_rotations = float(circle_outer_final_mm / self.wheel.circumference_mm)
-        // outer_wheel_degrees = outer_wheel_rotations * 360
-
-        // log.debug(
-        //     "%s: arc %s, circle_middle_percentage %s, circle_outer_final_mm %s, outer_wheel_rotations %s, outer_wheel_degrees %s"
-        //     % (self, "right" if arc_right else "left", circle_middle_percentage, circle_outer_final_mm,
-        //        outer_wheel_rotations, outer_wheel_degrees))
-
-        // MoveTank.on_for_degrees(self, left_speed, right_speed, outer_wheel_degrees, brake, block)
-
-
+            // MoveTank.on_for_degrees(self, left_speed, right_speed, outer_wheel_degrees, brake, block)
+            this.tank(right_speed, left_speed, outer_wheel_degrees, MoveUnit.Degrees);
+        }
 
         /**
          * calculate motor speed and rotations for move tank arcing to the right
@@ -135,11 +114,8 @@ namespace movedifferential {
         //% weight=99
         arcRight(speed: number, radius: number, distance: number) {
             // update variables
-            this.mdBaseSpeed = speed;
-            this.mdRadius = radius;
-            this.mdDistance = distance;
-
-             
+            this.init();
+            this.onArc(speed, radius, distance, true);             
         }
 
         /**
@@ -154,22 +130,18 @@ namespace movedifferential {
         //% weight=99
         arcLeft(speed: number, radius: number, distance: number) {
             // update variables
-            this.mdBaseSpeed = speed;
-            this.mdRadius = radius;
-            this.mdDistance = distance;
+            this.init();
+            this.onArc(speed, radius, distance, true);             
         }
 
     }
 
-    //% whenUsed fixedInstance block="B+C" jres=icons.portBC
-    export const largeBC = new MDController(Output.BC);
+    //% whenUsed fixedInstance block="ev3Tire"
+    export const ev3Tire = new MDController(Output.BC, EV3Tire, 150);
 
-    //% whenUsed fixedInstance block="A+D" jres=icons.portAD
-    export const largeAD = new MDController(Output.AD);
+    //% whenUsed fixedInstance block="ev3EducationTire"
+    export const ev3EdTire = new MDController(Output.AD, EV3EducationSetTire, 150);
 
-    //% whenUsed fixedInstance block="A+B" jres=icons.portAB
-    export const largeAB = new MDController(Output.AB);
-
-    //% whenUsed fixedInstance block="C+D" jres=icons.portCD
-    export const largeCD = new MDController(Output.CD);
+    //% whenUsed fixedInstance block="SmallMotorcycleTire"
+    export const smallMotoTire = new MDController(Output.AB, SmallMotorcycleTire, 150);
 }

@@ -1,4 +1,4 @@
-// / <reference path="./node_modules/pxt-ev3/libs/core/Output.ts" />
+// / <reference path="./core/Output.ts" />
 
 namespace movedifferential {
     /**

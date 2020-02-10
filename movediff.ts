@@ -112,7 +112,6 @@ namespace movedifferential {
         //% blockId=mdArcRight block="Arc Right %md|at speed %speed for circle of radius %radius for distance %distance"
         //% group=Arc
         //% inlineInputMode=inline
-        //% weight=99
         arcRight(speed: number, radius: number, distance: number) {
             // update variables
             //this.init();
@@ -128,7 +127,6 @@ namespace movedifferential {
         //% blockId=mdArcLeft block="Arc Left %md|at speed %speed for circle of radius %radius for distance %distance"
         //% group=Arc
         //% inlineInputMode=inline
-        //% weight=99
         arcLeft(speed: number, radius: number, distance: number) {
             // update variables
             //this.init();

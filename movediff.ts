@@ -102,7 +102,7 @@ namespace movedifferential {
          * @param radius radius of circle
          * @param distance distance
          */
-        //% blockId=mdArcRight block="tank %Wheel wheels at speed %speed for circle of radius %radius for distance %distance"
+        //% blockId=mdArcRight block="Arc Right at speed %speed for circle of radius %radius for distance %distance"
         //% group=Arc
         //% inlineInputMode=inline
         //% weight=99
@@ -118,24 +118,28 @@ namespace movedifferential {
          * @param radius radius of circle
          * @param distance distance
          */
-        //% blockId=mdArcLeft block="tank with %Wheel wheels at speed %speed for circle of radius %radius for distance %distance"
+        //% blockId=mdArcLeft block="Arc Left at speed %speed for circle of radius %radius for distance %distance"
         //% group=Arc
         //% inlineInputMode=inline
         //% weight=99
         arcLeft(speed: number, radius: number, distance: number) {
             // update variables
             this.init();
-            this.onArc(speed, radius, distance, true);             
+            this.onArc(speed, radius, distance, false);             
         }
 
     }
 
-    //% whenUsed fixedInstance block="ev3Tire"
-    export const ev3Tire = new MDController(Output.BC, EV3Tire, 150);
+    //% whenUsed fixedInstance block="B-C"
+    export const md1 = new MDController(Output.BC, SmallMotorcycleTire, 150);
 
-    //% whenUsed fixedInstance block="ev3EducationTire"
-    export const ev3EdTire = new MDController(Output.AD, EV3EducationSetTire, 150);
+    //% whenUsed fixedInstance block="A-D"
+    export const md2 = new MDController(Output.AD, SmallMotorcycleTire, 150);
 
-    //% whenUsed fixedInstance block="SmallMotorcycleTire"
-    export const smallMotoTire = new MDController(Output.AB, SmallMotorcycleTire, 150);
+    //% whenUsed fixedInstance block="A-B"
+    export const md3 = new MDController(Output.AB, SmallMotorcycleTire, 150);
+
+    //% whenUsed fixedInstance block="C-D"
+    export const md4 = new MDController(Output.AB, SmallMotorcycleTire, 150);
+
 }

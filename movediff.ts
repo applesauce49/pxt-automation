@@ -1,4 +1,4 @@
-/// <reference path="./node_modules/pxt-ev3/libs/core/Output.ts" />
+// / <reference path="./node_modules/pxt-ev3/libs/core/Output.ts" />
 
 namespace movedifferential {
     /**
@@ -54,47 +54,47 @@ namespace movedifferential {
 
         }
 
-        private onArc(speed: number, radius_mm: number, distance_mm: number, arc_right: Boolean = true) {
-            let left_speed: number = 0;
-            let right_speed: number = 0;
+        // private onArc(speed: number, radius_mm: number, distance_mm: number, arc_right: Boolean = true) {
+        //     let left_speed: number = 0;
+        //     let right_speed: number = 0;
 
-            if (radius_mm < this.min_circle_radius_mm) {
-                return;
-            }
+        //     if (radius_mm < this.min_circle_radius_mm) {
+        //         return;
+        //     }
 
-            let circle_outer_mm = 2 * Math.PI * (radius_mm + (this.wheel_distance_mm.valueOf() / 2));
-            let circle_middle_mm = 2 * Math.PI * radius_mm;
-            let circle_inner_mm = 2 * Math.PI * (radius_mm - (this.wheel_distance_mm.valueOf() / 2));
+        //     let circle_outer_mm = 2 * Math.PI * (radius_mm + (this.wheel_distance_mm.valueOf() / 2));
+        //     let circle_middle_mm = 2 * Math.PI * radius_mm;
+        //     let circle_inner_mm = 2 * Math.PI * (radius_mm - (this.wheel_distance_mm.valueOf() / 2));
             
-            if (arc_right) {
-                // The left wheel is making the larger circle and will move at 'speed'
-                // The right wheel is making a smaller circle so its speed will be a fraction of the left motor's speed
-                left_speed = speed;
-                right_speed = (circle_inner_mm / circle_outer_mm) * left_speed;
-            }
-            else {
-                // The right wheel is making the larger circle and will move at 'speed'
-                // The left wheel is making a smaller circle so its speed will be a fraction of the right motor's speed
-                right_speed = speed
-                left_speed = (circle_inner_mm / circle_outer_mm) * right_speed;
+        //     if (arc_right) {
+        //         // The left wheel is making the larger circle and will move at 'speed'
+        //         // The right wheel is making a smaller circle so its speed will be a fraction of the left motor's speed
+        //         left_speed = speed;
+        //         right_speed = (circle_inner_mm / circle_outer_mm) * left_speed;
+        //     }
+        //     else {
+        //         // The right wheel is making the larger circle and will move at 'speed'
+        //         // The left wheel is making a smaller circle so its speed will be a fraction of the right motor's speed
+        //         right_speed = speed
+        //         left_speed = (circle_inner_mm / circle_outer_mm) * right_speed;
 
-            }
+        //     }
 
-            // # We know we want the middle circle to be of length distance_mm so
-            // # calculate the percentage of circle_middle_mm we must travel for the
-            // # middle of the robot to travel distance_mm.
-            let circle_middle_percentage = distance_mm / circle_middle_mm;
+        //     // # We know we want the middle circle to be of length distance_mm so
+        //     // # calculate the percentage of circle_middle_mm we must travel for the
+        //     // # middle of the robot to travel distance_mm.
+        //     let circle_middle_percentage = distance_mm / circle_middle_mm;
 
-            // # Now multiple that percentage by circle_outer_mm to calculate how
-            // # many mm the outer wheel should travel.
-            let circle_outer_final_mm = circle_middle_percentage * circle_outer_mm;
+        //     // # Now multiple that percentage by circle_outer_mm to calculate how
+        //     // # many mm the outer wheel should travel.
+        //     let circle_outer_final_mm = circle_middle_percentage * circle_outer_mm;
 
-            let outer_wheel_rotations = circle_outer_final_mm / this.wheel.circumference_mm.valueOf();
-            let outer_wheel_degrees = outer_wheel_rotations * 360;
+        //     let outer_wheel_rotations = circle_outer_final_mm / this.wheel.circumference_mm.valueOf();
+        //     let outer_wheel_degrees = outer_wheel_rotations * 360;
 
-            // MoveTank.on_for_degrees(self, left_speed, right_speed, outer_wheel_degrees, brake, block)
-            this.tank(right_speed, left_speed, outer_wheel_degrees, MoveUnit.Degrees);
-        }
+        //     // MoveTank.on_for_degrees(self, left_speed, right_speed, outer_wheel_degrees, brake, block)
+        //     this.tank(right_speed, left_speed, outer_wheel_degrees, MoveUnit.Degrees);
+        // }
 
         /**
          * calculate motor speed and rotations for move tank arcing to the right
@@ -109,7 +109,7 @@ namespace movedifferential {
         arcRight(speed: number, radius: number, distance: number) {
             // update variables
             this.init();
-            this.onArc(speed, radius, distance, true);             
+            //this.onArc(speed, radius, distance, true);             
         }
 
         /**
@@ -125,7 +125,7 @@ namespace movedifferential {
         arcLeft(speed: number, radius: number, distance: number) {
             // update variables
             this.init();
-            this.onArc(speed, radius, distance, false);             
+            //this.onArc(speed, radius, distance, false);             
         }
 
     }

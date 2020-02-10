@@ -18,7 +18,7 @@ namespace movedifferential {
         constructor(diameter: Number, width: Number) {
             this.diameter_mm = diameter;
             this.width_mm = width;
-            this.circumference_mm = this.diameter_mm.valueOf() * Math.PI;
+            // this.circumference_mm = this.diameter_mm.valueOf() * Math.PI;
         }
     }
 
@@ -44,13 +44,13 @@ namespace movedifferential {
     
         constructor(ports: Output, wheelType: Wheel, wheelDistance: Number) {
             super(ports);
-            this.wheel = wheelType;
-            this.wheel_distance_mm = wheelDistance
+            // this.wheel = wheelType;
+            // this.wheel_distance_mm = wheelDistance
     
-            //The circumference of the circle made if this robot were to rotate in place
-            this.circumference_mm = this.wheel_distance_mm.valueOf() * Math.PI;
+            // //The circumference of the circle made if this robot were to rotate in place
+            // this.circumference_mm = this.wheel_distance_mm.valueOf() * Math.PI;
     
-            this.min_circle_radius_mm = this.wheel_distance_mm.valueOf() / 2
+            // this.min_circle_radius_mm = this.wheel_distance_mm.valueOf() / 2
 
         }
 
@@ -108,7 +108,7 @@ namespace movedifferential {
         //% weight=99
         arcRight(speed: number, radius: number, distance: number) {
             // update variables
-            this.init();
+            //this.init();
             //this.onArc(speed, radius, distance, true);             
         }
 
@@ -124,7 +124,7 @@ namespace movedifferential {
         //% weight=99
         arcLeft(speed: number, radius: number, distance: number) {
             // update variables
-            this.init();
+            //this.init();
             //this.onArc(speed, radius, distance, false);             
         }
 

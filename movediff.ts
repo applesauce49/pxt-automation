@@ -1,5 +1,12 @@
-// / <reference path="./core/Output.ts" />
-
+// / <reference path="./pxt_modules/core/Output.ts" />
+enum EV3Wheels {
+    //% block="EV3-Tire"
+    EV3Tire = 0x01,
+    //% block="EV3-Education Tire"
+    EV3EdTire = 0x02,
+    //% block="Small Motorcycle Tire"
+    SmallMotoTire = 0x04,
+}
 namespace movedifferential {
     /**
      * A Move Differential controller.
@@ -9,25 +16,25 @@ namespace movedifferential {
     //% fixedInstances
     export class Wheel {
         //% blockCombine
-        public diameter_mm: Number;
+        public diameter_mm: number;
         //% blockCombine
-        public width_mm: Number;
+        public width_mm: number;
         //% blockCombine
-        public circumference_mm: Number;
+        public circumference_mm: number;
 
-        constructor(diameter: Number, width: Number) {
+        constructor(diameter: number, width: number) {
             this.diameter_mm = diameter;
             this.width_mm = width;
-            // this.circumference_mm = this.diameter_mm.valueOf() * Math.PI;
+            this.circumference_mm = this.diameter_mm * Math.PI;
         }
     }
 
     //% block="EV3-Tire"
     export const EV3Tire = new Wheel(43.2, 21);
-  
+
     //% block="EV3-Education Tire"
     export const EV3EducationSetTire = new Wheel(56, 28);
-    
+
     //% block="Small Motorcycle Tire"
     export const SmallMotorcycleTire = new Wheel(81.6, 13.6);
 
@@ -36,20 +43,20 @@ namespace movedifferential {
 
         private mdBaseSpeed: number;
         private mdRadius: number;
-        private mdDistance: number;        
+        private mdDistance: number;
         private wheel: Wheel;
         private wheel_distance_mm: Number;
         private circumference_mm: Number;
         private min_circle_radius_mm: Number;
-    
-        constructor(ports: Output, wheelType: Wheel, wheelDistance: Number) {
+
+        constructor(ports: Output, wheelType: Wheel) {
             super(ports);
-            // this.wheel = wheelType;
+            this.wheel = wheelType;
             // this.wheel_distance_mm = wheelDistance
-    
+
             // //The circumference of the circle made if this robot were to rotate in place
             // this.circumference_mm = this.wheel_distance_mm.valueOf() * Math.PI;
-    
+
             // this.min_circle_radius_mm = this.wheel_distance_mm.valueOf() / 2
 
         }
@@ -65,7 +72,7 @@ namespace movedifferential {
         //     let circle_outer_mm = 2 * Math.PI * (radius_mm + (this.wheel_distance_mm.valueOf() / 2));
         //     let circle_middle_mm = 2 * Math.PI * radius_mm;
         //     let circle_inner_mm = 2 * Math.PI * (radius_mm - (this.wheel_distance_mm.valueOf() / 2));
-            
+
         //     if (arc_right) {
         //         // The left wheel is making the larger circle and will move at 'speed'
         //         // The right wheel is making a smaller circle so its speed will be a fraction of the left motor's speed
@@ -131,15 +138,15 @@ namespace movedifferential {
     }
 
     //% whenUsed fixedInstance block="B-C"
-    export const md1 = new MDController(Output.BC, SmallMotorcycleTire, 150);
+    export const md1 = new MDController(Output.BC, SmallMotorcycleTire);
 
     //% whenUsed fixedInstance block="A-D"
-    export const md2 = new MDController(Output.AD, SmallMotorcycleTire, 150);
+    export const md2 = new MDController(Output.AD, SmallMotorcycleTire);
 
     //% whenUsed fixedInstance block="A-B"
-    export const md3 = new MDController(Output.AB, SmallMotorcycleTire, 150);
+    export const md3 = new MDController(Output.AB, SmallMotorcycleTire);
 
     //% whenUsed fixedInstance block="C-D"
-    export const md4 = new MDController(Output.AB, SmallMotorcycleTire, 150);
+    export const md4 = new MDController(Output.AB, SmallMotorcycleTire);
 
 }

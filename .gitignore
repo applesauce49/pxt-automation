@@ -9,3 +9,15 @@ pxt_modules
 pxt-common-packages
 package-lock.json
 pxt-ev3
+projects/automation/.header.json
+projects/automation/behaviors.ts
+projects/automation/movediff.ts
+projects/automation/ns.ts
+projects/automation/pid.ts
+projects/automation/pxt.json
+projects/automation/README.md
+projects/bar/.header.json
+projects/bar/main.blocks
+projects/bar/main.ts
+projects/bar/pxt.json
+projects/bar/README.md

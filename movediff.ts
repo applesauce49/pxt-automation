@@ -108,7 +108,7 @@ namespace movedifferential {
          * @param radius radius of circle
          * @param distance distance
          */
-        //% blockId=mdArcRight block="set %md|speed %speed for circle of radius %radius for distance %distance"
+        //% blockId=mdArcRight block="tank %md| with %Wheel wheels at speed %speed for circle of radius %radius for distance %distance"
         //% group=Arc
         //% inlineInputMode=inline
         //% weight=99
@@ -124,7 +124,7 @@ namespace movedifferential {
          * @param radius radius of circle
          * @param distance distance
          */
-        //% blockId=mdArcLeft block="set %md|speed %speed for circle of radius %radius for distance %distance"
+        //% blockId=mdArcLeft block="tank %md| with %Wheel wheels at speed %speed for circle of radius %radius for distance %distance"
         //% group=Arc
         //% inlineInputMode=inline
         //% weight=99

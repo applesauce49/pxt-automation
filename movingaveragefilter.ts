@@ -60,8 +60,8 @@ namespace automation {
     export const movingAverageFilter1 = new MovingAverageFilter();
     //% fixedInstance block="moving average filter 100"
     export const movingAverageFilter2 = new MovingAverageFilter();
-    //% fixedInstance block="moving average filter 101"
+    //% fixedInstance block="not moving average filter 101"
     export const movingAverageFilter3 = new MovingAverageFilter();
-    //% fixedInstance block="moving average filter 102"
+    //% fixedInstance block="not moving average filter 102"
     export const movingAverageFilter4 = new MovingAverageFilter();
 }

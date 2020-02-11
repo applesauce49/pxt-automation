@@ -56,12 +56,12 @@ namespace automation {
         }
     }
 
-    //% fixedInstance block="moving average filter 1"
+    //% fixedInstance block="moving average filter 99"
     export const movingAverageFilter1 = new MovingAverageFilter();
-    //% fixedInstance block="moving average filter 2"
+    //% fixedInstance block="moving average filter 100"
     export const movingAverageFilter2 = new MovingAverageFilter();
-    //% fixedInstance block="moving average filter 3"
+    //% fixedInstance block="moving average filter 101"
     export const movingAverageFilter3 = new MovingAverageFilter();
-    //% fixedInstance block="moving average filter 4"
+    //% fixedInstance block="moving average filter 102"
     export const movingAverageFilter4 = new MovingAverageFilter();
 }

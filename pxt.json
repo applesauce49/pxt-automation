@@ -10,7 +10,7 @@
         "ns.ts",
         "behaviors.ts",
         "pid.ts",
-        "movediff.ts"
+        "move.ts"
     ],
     "testFiles": [],
     "public": true,

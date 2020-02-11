@@ -1,71 +1,71 @@
 // / <reference path="./pxt_modules/core/Output.ts" />
-enum EV3Wheels {
-    //% block="EV3-Tire"
-    EV3Tire = 0x01,
-    //% block="EV3-Education Tire"
-    EV3EdTire = 0x02,
-    //% block="Small Motorcycle Tire"
-    SmallMotoTire = 0x04,
-}
+// enum EV3Wheels {
+//     //% block="EV3-Tire"
+//     EV3Tire = 0x01,
+//     //% block="EV3-Education Tire"
+//     EV3EdTire = 0x02,
+//     //% block="Small Motorcycle Tire"
+//     SmallMotoTire = 0x04,
+// }
 
 namespace automation {
-    /**
-     * A Wheel Class.
-     * 
-     * Reference: As implemented in ev3dev2-python
-     */
-    //% fixedInstances
-    export class Wheel {
-        //% blockCombine
-        public diameter_mm: number;
-        //% blockCombine
-        public width_mm: number;
-        //% blockCombine
-        public circumference_mm: number;
+    // /**
+    //  * A Wheel Class.
+    //  * 
+    //  * Reference: As implemented in ev3dev2-python
+    //  */
+    // //% fixedInstances
+    // export class Wheel {
+    //     //% blockCombine
+    //     public diameter_mm: number;
+    //     //% blockCombine
+    //     public width_mm: number;
+    //     //% blockCombine
+    //     public circumference_mm: number;
 
-        constructor(diameter: number, width: number) {
-            this.diameter_mm = diameter;
-            this.width_mm = width;
-            this.circumference_mm = this.diameter_mm * Math.PI;
-        }
-    }
+    //     constructor(diameter: number, width: number) {
+    //         this.diameter_mm = diameter;
+    //         this.width_mm = width;
+    //         this.circumference_mm = this.diameter_mm * Math.PI;
+    //     }
+    // }
 
-    //% block="EV3-Tire"
-    export const EV3Tire = new Wheel(43.2, 21);
+    // //% block="EV3-Tire"
+    // export const EV3Tire = new Wheel(43.2, 21);
 
-    //% block="EV3-Education Tire"
-    export const EV3EducationSetTire = new Wheel(56, 28);
+    // //% block="EV3-Education Tire"
+    // export const EV3EducationSetTire = new Wheel(56, 28);
 
-    //% block="Small Motorcycle Tire"
-    export const SmallMotorcycleTire = new Wheel(81.6, 13.6);
+    // //% block="Small Motorcycle Tire"
+    // export const SmallMotorcycleTire = new Wheel(81.6, 13.6);
 
-    /**
-     * A Move Differential Controller.
-     * 
-     * Reference: As implemented in ev3dev2-python
-     */
-    //% fixedInstances
-    export class MDController extends motors.SynchedMotorPair {
+    // /**
+    //  * A Move Differential Controller.
+    //  * 
+    //  * Reference: As implemented in ev3dev2-python
+    //  */
+    // //% fixedInstances
+    // export class MDController extends motors.SynchedMotorPair {
 
-        private mdBaseSpeed: number;
-        private mdRadius: number;
-        private mdDistance: number;
-        private wheel: Wheel;
-        private wheel_distance_mm: Number;
-        private circumference_mm: Number;
-        private min_circle_radius_mm: Number;
+    //     private mdBaseSpeed: number;
+    //     private mdRadius: number;
+    //     private mdDistance: number;
+    //     private wheel: Wheel;
+    //     private wheel_distance_mm: Number;
+    //     private circumference_mm: Number;
+    //     private min_circle_radius_mm: Number;
 
-        constructor(ports: Output, wheelType: Wheel) {
-            super(ports);
-            this.wheel = wheelType;
-            // this.wheel_distance_mm = wheelDistance
+    //     constructor(ports: Output, wheelType: Wheel) {
+    //         super(ports);
+    //         this.wheel = wheelType;
+    //         // this.wheel_distance_mm = wheelDistance
 
-            // //The circumference of the circle made if this robot were to rotate in place
-            // this.circumference_mm = this.wheel_distance_mm.valueOf() * Math.PI;
+    //         // //The circumference of the circle made if this robot were to rotate in place
+    //         // this.circumference_mm = this.wheel_distance_mm.valueOf() * Math.PI;
 
-            // this.min_circle_radius_mm = this.wheel_distance_mm.valueOf() / 2
+    //         // this.min_circle_radius_mm = this.wheel_distance_mm.valueOf() / 2
 
-        }
+    //     }
 
         // private onArc(speed: number, radius_mm: number, distance_mm: number, arc_right: Boolean = true) {
         //     let left_speed: number = 0;
@@ -109,48 +109,48 @@ namespace automation {
         //     this.tank(right_speed, left_speed, outer_wheel_degrees, MoveUnit.Degrees);
         // }
 
-        /**
-         * calculate motor speed and rotations for move tank arcing to the right
-         * @param speed speed to travel at
-         * @param radius radius of circle
-         * @param distance distance
-         */
-        //% blockId=mdArcRight block="Arc Right %md|at speed %speed for circle of radius %radius for distance %distance"
-        //% group=Arc
-        //% inlineInputMode=inline
-        arcRight(speed: number, radius: number, distance: number) {
-            // update variables
-            //this.init();
-            //this.onArc(speed, radius, distance, true);             
-        }
+    //     /**
+    //      * calculate motor speed and rotations for move tank arcing to the right
+    //      * @param speed speed to travel at
+    //      * @param radius radius of circle
+    //      * @param distance distance
+    //      */
+    //     //% blockId=mdArcRight block="Arc Right %md|at speed %speed for circle of radius %radius for distance %distance"
+    //     //% group=Arc
+    //     //% inlineInputMode=inline
+    //     arcRight(speed: number, radius: number, distance: number) {
+    //         // update variables
+    //         //this.init();
+    //         //this.onArc(speed, radius, distance, true);             
+    //     }
 
-        /**
-         * calculate motor speed and rotations for move tank arcing to the left
-         * @param speed speed to travel at
-         * @param radius radius of circle
-         * @param distance distance
-         */
-        //% blockId=mdArcLeft block="Arc Left %md|at speed %speed for circle of radius %radius for distance %distance"
-        //% group=Arc
-        //% inlineInputMode=inline
-        arcLeft(speed: number, radius: number, distance: number) {
-            // update variables
-            //this.init();
-            //this.onArc(speed, radius, distance, false);             
-        }
+    //     /**
+    //      * calculate motor speed and rotations for move tank arcing to the left
+    //      * @param speed speed to travel at
+    //      * @param radius radius of circle
+    //      * @param distance distance
+    //      */
+    //     //% blockId=mdArcLeft block="Arc Left %md|at speed %speed for circle of radius %radius for distance %distance"
+    //     //% group=Arc
+    //     //% inlineInputMode=inline
+    //     arcLeft(speed: number, radius: number, distance: number) {
+    //         // update variables
+    //         //this.init();
+    //         //this.onArc(speed, radius, distance, false);             
+    //     }
 
-    }
+    // }
 
-    //% whenUsed fixedInstance block="B-C"
-    export const md1 = new MDController(Output.BC, SmallMotorcycleTire);
+    // //% whenUsed fixedInstance block="B-C"
+    // export const md1 = new MDController(Output.BC, SmallMotorcycleTire);
 
-    //% whenUsed fixedInstance block="A-D"
-    export const md2 = new MDController(Output.AD, SmallMotorcycleTire);
+    // //% whenUsed fixedInstance block="A-D"
+    // export const md2 = new MDController(Output.AD, SmallMotorcycleTire);
 
-    //% whenUsed fixedInstance block="A-B"
-    export const md3 = new MDController(Output.AB, SmallMotorcycleTire);
+    // //% whenUsed fixedInstance block="A-B"
+    // export const md3 = new MDController(Output.AB, SmallMotorcycleTire);
 
-    //% whenUsed fixedInstance block="C-D"
-    export const md4 = new MDController(Output.AB, SmallMotorcycleTire);
+    // //% whenUsed fixedInstance block="C-D"
+    // export const md4 = new MDController(Output.AB, SmallMotorcycleTire);
 
 }

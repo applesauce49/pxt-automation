@@ -10,7 +10,7 @@
         "ns.ts",
         "behaviors.ts",
         "pid.ts",
-        "move.ts"
+        "movingaveragefilter.ts"
     ],
     "testFiles": [],
     "public": true,

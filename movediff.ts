@@ -7,9 +7,10 @@ enum EV3Wheels {
     //% block="Small Motorcycle Tire"
     SmallMotoTire = 0x04,
 }
-namespace movedifferential {
+
+namespace automation {
     /**
-     * A Move Differential controller.
+     * A Wheel Class.
      * 
      * Reference: As implemented in ev3dev2-python
      */
@@ -38,6 +39,11 @@ namespace movedifferential {
     //% block="Small Motorcycle Tire"
     export const SmallMotorcycleTire = new Wheel(81.6, 13.6);
 
+    /**
+     * A Move Differential Controller.
+     * 
+     * Reference: As implemented in ev3dev2-python
+     */
     //% fixedInstances
     export class MDController extends motors.SynchedMotorPair {
 
